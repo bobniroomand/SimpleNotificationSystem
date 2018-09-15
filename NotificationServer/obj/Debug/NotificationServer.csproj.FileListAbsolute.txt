@@ -1,0 +1,8 @@
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\bin\Debug\NotificationServer.exe.config
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\bin\Debug\NotificationServer.exe
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\bin\Debug\NotificationServer.pdb
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\bin\Debug\Thrift.dll
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\bin\Debug\Thrift.pdb
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\obj\Debug\NotificationServer.csprojResolveAssemblyReference.cache
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\obj\Debug\NotificationServer.exe
+c:\users\papak\documents\visual studio 2017\Projects\SimpleNotificationSystem\NotificationServer\obj\Debug\NotificationServer.pdb
