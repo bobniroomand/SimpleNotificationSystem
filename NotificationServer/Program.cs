@@ -7,6 +7,7 @@ using Notification;
 using System.Threading;
 using Thrift.Transport;
 using Thrift.Server;
+using Thrift.Protocol;
 
 namespace NotificationServer
 {
@@ -24,8 +25,16 @@ namespace NotificationServer
             var processor = new NotificationService.Processor(handler);
 
             TServerTransport transport = new TServerSocket(9091);
-            TServer server = new TThreadPoolServer(processor, transport);
+            TServer server = new TThreadPoolServer(processor, transport
+                , new TTransportFactory()
+                , new TTransportFactory()
+                , new TBinaryProtocol.Factory()
+                , new TBinaryProtocol.Factory()
+                , 100
+                , 500
+                , null);
 
+            Console.WriteLine("start serving...");
             server.Serve();
         }
     }

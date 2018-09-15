@@ -42,12 +42,13 @@ namespace NotificationServer
             {
                 
                 //var client = GetClient(Id);
-                Task.Factory.StartNew(() =>
+                new Thread(() =>
                 {
-                    System.Threading.Thread.Sleep(10000);
+                    int sleepTime = new Random().Next(1000, 10000);
+                    Thread.Sleep(sleepTime);
                     //Monitor.Pulse(client);
                     notifEvent.Set();
-                });
+                }).Start();
                 //wait for Notifications...
                 //Monitor.Wait(client);
                 notifEvent.WaitOne();
