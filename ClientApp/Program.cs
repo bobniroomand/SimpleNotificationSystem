@@ -14,19 +14,20 @@ namespace ClientApp
     {
         static void Main(string[] args)
         {
+            int numberOfExecutedTasks = 0;
             for (int i = 0; i < 200; i++)
             {
                 int c = i;
-                Thread t = new Thread(() =>
+                ThreadPool.QueueUserWorkItem((obj) =>
                             {
                                 Thread.CurrentThread.IsBackground = false;
                                 var client = OpenConnectionToServer();
                                 var notifs = client.GetNotifications();
                                 Console.WriteLine("notifs of client #{0}: {1}",c ,notifs);
+                                numberOfExecutedTasks++;
                             });
-                t.Start();
             }
-
+            while (numberOfExecutedTasks < 200) ;
         }
         static NotificationService.Client OpenConnectionToServer()
         {
