@@ -13,6 +13,7 @@ namespace NotificationServer
 {
     class Program
     {
+        public static int c = 0;
         static void Main(string[] args)
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback((callback) => { RunNotificationService(); }));
@@ -25,14 +26,7 @@ namespace NotificationServer
             var processor = new NotificationService.Processor(handler);
 
             TServerTransport transport = new TServerSocket(9091);
-            TServer server = new TThreadPoolServer(processor, transport
-                , new TTransportFactory()
-                , new TTransportFactory()
-                , new TBinaryProtocol.Factory()
-                , new TBinaryProtocol.Factory()
-                , 100
-                , 500
-                , null);
+            TServer server = new TThreadPoolServer(processor, transport);
 
             Console.WriteLine("start serving...");
             server.Serve();
@@ -43,7 +37,9 @@ namespace NotificationServer
     {
         public string GetNotifications()
         {
-            return NotificationHelper.Instance.GetNotifications(0);
+            var notifications = NotificationHelper.Instance.GetNotificationsAsync(0);
+            Console.WriteLine("Req#{0}, Notification:{1}", ++Program.c, notifications.Result);
+            return notifications.Result;
         }
     }
 }

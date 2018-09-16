@@ -24,34 +24,25 @@ namespace NotificationServer
                     if (instance == null)
                     {
                         instance = new NotificationHelper();
-                        //client = new
-                        //{
-                        //    Name = "john doe"
-                        //};
                     }
                     return instance;
                 }
             }
         }
 
-        public string GetNotifications(int Id)
+        public async Task<string> GetNotificationsAsync(int Id)
         {
             bool hasNotification = HasNotification(Id);
-            
+
+            hasNotification = false;
             if (!hasNotification)
             {
-                
-                //var client = GetClient(Id);
-                new Thread(() =>
+                Action getNotifications = new Action(() =>
                 {
-                    int sleepTime = new Random().Next(1000, 10000);
+                    int sleepTime = 10000;
                     Thread.Sleep(sleepTime);
-                    //Monitor.Pulse(client);
-                    notifEvent.Set();
-                }).Start();
-                //wait for Notifications...
-                //Monitor.Wait(client);
-                notifEvent.WaitOne();
+                });
+                await Task.Run(getNotifications);
             }
             string notifications = SearchForNotifications(Id);
             return notifications;
